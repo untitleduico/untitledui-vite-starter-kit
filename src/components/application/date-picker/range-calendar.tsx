@@ -65,7 +65,9 @@ const MobilePresetButton = ({ value, children, ...props }: HTMLAttributes<HTMLBu
 };
 
 interface RangeCalendarProps extends AriaRangeCalendarProps<DateValue> {
+    /** The dates to highlight. */
     highlightedDates?: DateValue[];
+    /** The date presets to display. */
     presets?: Record<string, { label: string; value: { start: DateValue; end: DateValue } }>;
 }
 

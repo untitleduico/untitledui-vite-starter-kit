@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { SwitchProps } from "react-aria-components";
+import type { SwitchProps as AriaSwitchProps } from "react-aria-components";
 import { Switch as AriaSwitch } from "react-aria-components";
 import { cx } from "@/utils/cx";
 
@@ -74,7 +74,7 @@ export const ToggleBase = ({ className, isHovered, isDisabled, isFocusVisible, i
     );
 };
 
-interface ToggleProps extends SwitchProps {
+interface ToggleProps extends AriaSwitchProps {
     size?: "sm" | "md";
     label?: string;
     hint?: ReactNode;

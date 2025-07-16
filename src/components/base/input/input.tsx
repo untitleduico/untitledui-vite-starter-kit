@@ -238,13 +238,27 @@ export const Input = ({
 }: InputProps) => {
     return (
         <TextField aria-label={!label ? placeholder : undefined} {...props} className={className}>
-            {label && <Label isRequired={hideRequiredIndicator ? !hideRequiredIndicator : undefined}>{label}</Label>}
-
-            <InputBase
-                {...{ ref, groupRef, size, placeholder, icon: Icon, shortcut, iconClassName, inputClassName, wrapperClassName, tooltipClassName, tooltip }}
-            />
-
-            {hint && <HintText>{hint}</HintText>}
+            {({ isInvalid }) => (
+                <>
+                    {label && <Label isRequired={hideRequiredIndicator ? !hideRequiredIndicator : undefined}>{label}</Label>}
+                    <InputBase
+                        {...{
+                            ref,
+                            groupRef,
+                            size,
+                            placeholder,
+                            icon: Icon,
+                            shortcut,
+                            iconClassName,
+                            inputClassName,
+                            wrapperClassName,
+                            tooltipClassName,
+                            tooltip,
+                        }}
+                    />
+                    {hint && <HintText isInvalid={isInvalid}>{hint}</HintText>}
+                </>
+            )}
         </TextField>
     );
 };
