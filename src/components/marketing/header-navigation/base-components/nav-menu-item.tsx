@@ -1,3 +1,5 @@
+"use client";
+
 import { type FC, type ReactNode, isValidElement } from "react";
 import { cx } from "@/utils/cx";
 import { isReactComponent } from "@/utils/is-react-component";
