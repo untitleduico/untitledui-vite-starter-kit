@@ -1,5 +1,6 @@
 import type { FC, MouseEventHandler } from "react";
-import { Tooltip, TooltipTrigger } from "@/components/base/tooltip/tooltip";
+import { Pressable } from "react-aria-components";
+import { Tooltip } from "@/components/base/tooltip/tooltip";
 import { cx } from "@/utils/cx";
 
 const styles = {
@@ -46,7 +47,7 @@ export const NavItemButton = ({
 }: NavItemButtonProps) => {
     return (
         <Tooltip title={label} placement={tooltipPlacement}>
-            <TooltipTrigger asChild>
+            <Pressable>
                 <a
                     href={href}
                     aria-label={label}
@@ -60,7 +61,7 @@ export const NavItemButton = ({
                 >
                     <Icon aria-hidden="true" className={cx("shrink-0 transition-inherit-all", styles[size].icon)} />
                 </a>
-            </TooltipTrigger>
+            </Pressable>
         </Tooltip>
     );
 };
