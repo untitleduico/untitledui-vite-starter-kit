@@ -7,7 +7,7 @@
         "@tailwindcss/typography": "^0.5.16",
         "@tailwindcss/vite": "^4.1.11",
         "@untitledui/file-icons": "^0.0.7",
-        "@untitledui/icons": "^0.0.17",
+        "@untitledui/icons": "^0.0.19",
         "motion": "^12.23.5",
         "react": "^19.1.0",
         "react-aria": "^3.41.1",
@@ -523,7 +523,7 @@
 
     "@untitledui/file-icons": ["@untitledui/file-icons@0.0.7", "", { "peerDependencies": { "react": ">= 16" } }, "sha512-apq58iORVo45Z9JkW17DAZshqWfirmOcgyJWCYwzptPKtGs4YROa9ShX8Vk8R/qS44k7mP/OEsocpiXmBafzFQ=="],
 
-    "@untitledui/icons": ["@untitledui/icons@0.0.17", "", { "peerDependencies": { "react": ">= 16" } }, "sha512-aQCksPH1oBcaBxhonKXH9jjh3RCA/CzolRw08x0fxyaXc2rNgjp2xe8h21QVIRX7zIXTuSIA/nAiirCcegY5vQ=="],
+    "@untitledui/icons": ["@untitledui/icons@0.0.19", "", { "peerDependencies": { "react": ">= 16" } }, "sha512-cZA7BBE5+piNpzO9CiXypbmGYSDqnT3WwHn6/TU7cUuYl7oUlwIn0AwW/kYDDkmJMPu/wRlnJDR1/OiXd4nqew=="],
 
     "@vitejs/plugin-react-swc": ["@vitejs/plugin-react-swc@3.10.2", "", { "dependencies": { "@rolldown/pluginutils": "1.0.0-beta.11", "@swc/core": "^1.11.31" }, "peerDependencies": { "vite": "^4 || ^5 || ^6 || ^7.0.0-beta.0" } }, "sha512-xD3Rdvrt5LgANug7WekBn1KhcvLn1H3jNBfJRL3reeOIua/WnZOEV5qi5qIBq5T8R0jUDmRtxuvk4bPhzGHDWw=="],
 
