@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { HomeScreen } from "@/pages/home-screen";
 import { NotFound } from "@/pages/not-found";
 import { RouteProvider } from "@/providers/router-provider";
-import { ThemeProvider } from "@/providers/theme";
+import { ThemeProvider } from "@/providers/theme-provider";
 import "@/styles/globals.css";
 
 createRoot(document.getElementById("root")!).render(
