@@ -7,7 +7,9 @@ This workflow synchronizes components from the main [untitleduico/react](https:/
 1. Go to the "Actions" tab in your GitHub repository
 2. Select "Sync Components from Main Repository"
 3. Click "Run workflow"
-4. Optionally specify which directories to sync (default: `components,hooks,utils,styles`)
+4. Configure options:
+   - **Directories**: Which directories to sync (default: `components,hooks,utils,styles`)
+   - **Sync Mode**: Choose between `all` or `existing-only`
 5. Click "Run workflow" to start the sync
 
 ## What it does
@@ -18,6 +20,18 @@ This workflow synchronizes components from the main [untitleduico/react](https:/
 4. **Processes** files by removing `"use client";` directives
 5. **Generates** a PR with commit history and detailed diff summaries
 6. **Stores** the sync state for future runs
+
+## Sync Modes
+
+### `all` (default)
+- Syncs all files from the main repository
+- Adds new files and updates existing ones
+- Creates complete mirror of main repo structure
+
+### `existing-only`
+- Only updates files that already exist in your repository
+- Skips new files from the main repository
+- Useful for maintaining a subset of components
 
 ## Smart Commit Tracking
 

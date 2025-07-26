@@ -8,6 +8,14 @@ on:
         required: false
         default: 'components,hooks,utils,styles'
         type: string
+      sync_mode:
+        description: 'Sync mode'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+        - all
+        - existing-only
 
 jobs:
   sync-components:
@@ -61,7 +69,8 @@ jobs:
           echo "Latest commit: $LATEST_COMMIT_SHORT - $LATEST_COMMIT_MESSAGE"
           
           # Get the directory structure (main repo has directories at root level, not in src/)
-          find components hooks utils styles -type f 2>/dev/null | sort > /tmp/main-repo-files.txt || echo "Some directories may not exist"
+          # Exclude demo and story files
+          find components hooks utils styles -type f ! -name "*.demo.tsx" ! -name "*.story.tsx" ! -name "*.stories.tsx" 2>/dev/null | sort > /tmp/main-repo-files.txt || echo "Some directories may not exist"
           
           echo "Files to sync:"
           cat /tmp/main-repo-files.txt
@@ -147,18 +156,40 @@ jobs:
               # Create directory in target repo if it doesn't exist
               mkdir -p "$GITHUB_WORKSPACE/src/$dir"
               
-              # Find all files in the directory from main repo
-              find "$dir" -type f | while read -r file; do
+              # Find all files in the directory from main repo, excluding demo and story files
+              find "$dir" -type f ! -name "*.demo.tsx" ! -name "*.story.tsx" ! -name "*.stories.tsx" | while read -r file; do
+                target_file="$GITHUB_WORKSPACE/src/$file"
+                
+                # Check sync mode
+                if [ "${{ github.event.inputs.sync_mode }}" = "existing-only" ]; then
+                  # Only process if target file already exists
+                  if [ ! -f "$target_file" ]; then
+                    echo "Skipping new file: $file (existing-only mode)"
+                    continue
+                  fi
+                fi
+                
                 echo "Processing $file..."
                 
                 # Copy file content and process it
                 content=$(cat "$file")
                 
-                # Remove "use client" directive if present
-                processed_content=$(echo "$content" | sed '/^"use client";*$/d' | sed '/^'\''use client'\'';*$/d')
+                # Remove "use client" directive if present (including double newlines after it)
+                # This handles both double quotes and single quotes, with optional semicolon
+                processed_content=$(echo "$content" | sed -E '
+                  /^"use client";?\s*$/{
+                    N
+                    N
+                    s/"use client";?\s*\n\s*\n//
+                  }
+                  /^'\''use client'\'';?\s*$/{
+                    N
+                    N
+                    s/'\''use client'\'';?\s*\n\s*\n//
+                  }
+                ')
                 
                 # Target file goes in src/ directory
-                target_file="$GITHUB_WORKSPACE/src/$file"
                 target_dir=$(dirname "$target_file")
                 mkdir -p "$target_dir"
                 
@@ -167,6 +198,30 @@ jobs:
                 
                 echo "- src/$file" >> /tmp/sync-summary.md
               done
+              
+              # Log skipped files for transparency
+              DEMO_STORY_SKIPPED=$(find "$dir" -type f \( -name "*.demo.tsx" -o -name "*.story.tsx" -o -name "*.stories.tsx" \) | wc -l)
+              
+              if [ "${{ github.event.inputs.sync_mode }}" = "existing-only" ]; then
+                # Count new files that were skipped
+                NEW_FILES_SKIPPED=0
+                find "$dir" -type f ! -name "*.demo.tsx" ! -name "*.story.tsx" ! -name "*.stories.tsx" | while read -r file; do
+                  target_file="$GITHUB_WORKSPACE/src/$file"
+                  if [ ! -f "$target_file" ]; then
+                    NEW_FILES_SKIPPED=$((NEW_FILES_SKIPPED + 1))
+                  fi
+                done
+                
+                if [ "$NEW_FILES_SKIPPED" -gt 0 ]; then
+                  echo "Skipped $NEW_FILES_SKIPPED new files (existing-only mode)"
+                  echo "- Skipped $NEW_FILES_SKIPPED new files (existing-only mode)" >> /tmp/sync-summary.md
+                fi
+              fi
+              
+              if [ "$DEMO_STORY_SKIPPED" -gt 0 ]; then
+                echo "Skipped $DEMO_STORY_SKIPPED demo/story files"
+                echo "- Skipped $DEMO_STORY_SKIPPED demo/story files" >> /tmp/sync-summary.md
+              fi
             else
               echo "Directory $dir not found in main repository" >> /tmp/sync-summary.md
             fi
@@ -247,7 +302,8 @@ jobs:
           echo "- **Latest Commit**: [\`$LATEST_COMMIT_SHORT\`](https://github.com/untitleduico/react/commit/$LATEST_COMMIT_HASH)" >> /tmp/pr-description.md
           echo "- **Sync Date**: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> /tmp/pr-description.md
           echo "- **Directories Synced**: ${{ github.event.inputs.sync_directories }}" >> /tmp/pr-description.md
-          echo "- **Automated Processing**: Removed \`\"use client\";\` directives" >> /tmp/pr-description.md
+          echo "- **Sync Mode**: ${{ github.event.inputs.sync_mode }}" >> /tmp/pr-description.md
+          echo "- **Automated Processing**: Removed \`\"use client\";\` directives, excluded demo/story files" >> /tmp/pr-description.md
           echo "" >> /tmp/pr-description.md
           echo "---" >> /tmp/pr-description.md
           echo "*This PR was automatically generated by the sync-components workflow.*" >> /tmp/pr-description.md
