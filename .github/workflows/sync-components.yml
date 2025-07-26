@@ -225,25 +225,21 @@ jobs:
           fi
           echo "" >> /tmp/pr-description.md
           
-          echo "## 📁 Changed Files" >> /tmp/pr-description.md
+          echo "## 📁 Modified Files" >> /tmp/pr-description.md
           echo "" >> /tmp/pr-description.md
           
-          # Get list of changed files
+          # Get file statistics
+          TOTAL_FILES=$(git diff --name-only | wc -l)
+          echo "**$TOTAL_FILES files modified**" >> /tmp/pr-description.md
+          echo "" >> /tmp/pr-description.md
+          
+          # List all changed files
           git diff --name-only | while read -r file; do
             if [ -n "$file" ]; then
-              echo "### 📄 \`$file\`" >> /tmp/pr-description.md
-              echo "" >> /tmp/pr-description.md
-              echo "<details>" >> /tmp/pr-description.md
-              echo "<summary>View diff</summary>" >> /tmp/pr-description.md
-              echo "" >> /tmp/pr-description.md
-              echo '```diff' >> /tmp/pr-description.md
-              git diff "$file" >> /tmp/pr-description.md
-              echo '```' >> /tmp/pr-description.md
-              echo "" >> /tmp/pr-description.md
-              echo "</details>" >> /tmp/pr-description.md
-              echo "" >> /tmp/pr-description.md
+              echo "- \`$file\`" >> /tmp/pr-description.md
             fi
           done
+          echo "" >> /tmp/pr-description.md
           
           echo "## 🔧 Sync Details" >> /tmp/pr-description.md
           echo "" >> /tmp/pr-description.md
