@@ -1,3 +1,4 @@
+
 import type { HTMLAttributes, PropsWithChildren } from "react";
 import { Fragment, useContext, useState } from "react";
 import type { CalendarDate } from "@internationalized/date";
@@ -71,7 +72,7 @@ interface RangeCalendarProps extends AriaRangeCalendarProps<DateValue> {
     presets?: Record<string, { label: string; value: { start: DateValue; end: DateValue } }>;
 }
 
-export const RangeCalendar = ({ highlightedDates, presets, ...props }: RangeCalendarProps) => {
+export const RangeCalendar = ({ presets, ...props }: RangeCalendarProps) => {
     const isDesktop = useBreakpoint("md");
     const context = useSlottedContext(RangeCalendarContext);
 

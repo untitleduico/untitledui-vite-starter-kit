@@ -1,3 +1,4 @@
+
 import type { RefAttributes } from "react";
 import { XClose } from "@untitledui/icons";
 import { Button as AriaButton, type ButtonProps as AriaButtonProps } from "react-aria-components";
@@ -11,7 +12,7 @@ interface TagCloseXProps extends AriaButtonProps, RefAttributes<HTMLButtonElemen
 const styles = {
     sm: { root: "p-0.5", icon: "size-2.5" },
     md: { root: "p-0.5", icon: "size-3" },
-    lg: { root: "p-[3px]", icon: "size-3.5" },
+    lg: { root: "p-0.75", icon: "size-3.5" },
 };
 
 export const TagCloseX = ({ size = "md", className, ...otherProps }: TagCloseXProps) => {

@@ -1,3 +1,4 @@
+
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, DetailedHTMLProps, FC, ReactNode } from "react";
 import { isValidElement } from "react";
 import type { Placement } from "react-aria";
@@ -49,7 +50,6 @@ export type Props = ButtonProps | LinkProps;
 
 export const ButtonUtility = ({
     tooltip,
-    children,
     className,
     isDisabled,
     icon: Icon,
