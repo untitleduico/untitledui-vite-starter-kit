@@ -72,10 +72,17 @@ jobs:
           cd $GITHUB_WORKSPACE
           
           # Check if we have a previous sync record
-          if [ -f ".github/last-sync-commit" ]; then
-            LAST_SYNC_COMMIT=$(cat .github/last-sync-commit)
-            echo "LAST_SYNC_COMMIT=$LAST_SYNC_COMMIT" >> $GITHUB_ENV
-            echo "Found previous sync commit: $LAST_SYNC_COMMIT"
+          if [ -f ".github/last-sync-commit" ] && [ -s ".github/last-sync-commit" ]; then
+            # Read the first line and trim whitespace, ignore comments
+            LAST_SYNC_COMMIT=$(head -n 1 .github/last-sync-commit | xargs | grep -v '^#' || echo "")
+            
+            if [ -n "$LAST_SYNC_COMMIT" ] && [ "$LAST_SYNC_COMMIT" != "" ]; then
+              echo "LAST_SYNC_COMMIT=$LAST_SYNC_COMMIT" >> $GITHUB_ENV
+              echo "Found previous sync commit: $LAST_SYNC_COMMIT"
+            else
+              echo "LAST_SYNC_COMMIT=" >> $GITHUB_ENV
+              echo "Sync file exists but no valid commit hash found"
+            fi
           else
             echo "LAST_SYNC_COMMIT=" >> $GITHUB_ENV
             echo "No previous sync record found"
