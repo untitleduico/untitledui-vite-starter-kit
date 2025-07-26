@@ -1,4 +1,4 @@
-# Component Sync Workflow
+# Component sync workflow
 
 This workflow synchronizes components from the main [untitleduico/react](https://github.com/untitleduico/react) repository with intelligent commit tracking.
 
@@ -7,7 +7,9 @@ This workflow synchronizes components from the main [untitleduico/react](https:/
 1. Go to the "Actions" tab in your GitHub repository
 2. Select "Sync Components from Main Repository"
 3. Click "Run workflow"
-4. Optionally specify which directories to sync (default: `components,hooks,utils,styles`)
+4. Configure options:
+   - **Directories**: Which directories to sync (default: `components,hooks,utils,styles`)
+   - **Sync mode**: Choose between `all` or `existing-only`
 5. Click "Run workflow" to start the sync
 
 ## What it does
@@ -19,19 +21,31 @@ This workflow synchronizes components from the main [untitleduico/react](https:/
 5. **Generates** a PR with commit history and detailed diff summaries
 6. **Stores** the sync state for future runs
 
-## Smart Commit Tracking
+## Sync modes
 
-- **First Run**: Shows "Initial sync" with latest commit details
-- **Subsequent Runs**: Shows commit range since last sync
+### `all` (default)
+- Syncs all files from the main repository
+- Adds new files and updates existing ones
+- Creates complete mirror of main repo structure
+
+### `existing-only`
+- Only updates files that already exist in your repository
+- Skips new files from the main repository
+- Useful for maintaining a subset of components
+
+## Smart commit tracking
+
+- **First run**: Shows "Initial sync" with latest commit details
+- **Subsequent runs**: Shows commit range since last sync
 - **Up-to-date**: Indicates when no new commits are available
-- **Commit History**: Collapsible list of all commits since last sync
+- **Commit history**: Collapsible list of all commits since last sync
 
-## Branch Naming
+## Branch naming
 
 Branches follow the pattern: `sync/YYYY-MM-DD-[short-commit-hash]`
 - Example: `sync/2024-03-15-a1b2c3d`
 
-## PR Format
+## PR format
 
 The generated PR includes:
 
@@ -40,12 +54,12 @@ The generated PR includes:
 - **First sync**: `🎉 Initial sync from main repository → a1b2c3d`
 
 ### Content
-- **Commits Since Last Sync**: Collapsible commit history with links
-- **Changed Files**: Each file with collapsible diff view
-- **Sync Details**: Source repo, latest commit, date, directories synced
-- **Automated Processing**: Notes about `"use client"` removal
+- **Commits since last sync**: Collapsible commit history with links
+- **Changed files**: Each file with collapsible diff view
+- **Sync details**: Source repo, latest commit, date, directories synced
+- **Automated processing**: Notes about `"use client"` removal
 
-## State Management
+## State management
 
 The workflow stores sync state in `.github/last-sync-commit` to track:
 - Last successfully synced commit hash
