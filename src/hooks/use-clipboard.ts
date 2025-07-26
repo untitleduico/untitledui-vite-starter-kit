@@ -65,7 +65,7 @@ export const useClipboard = (): UseClipboardReturnType => {
                 setTimeout(() => setCopied(false), DEFAULT_TIMEOUT);
 
                 return { success: true };
-            } catch (err) {
+            } catch {
                 // If modern method fails, try fallback
                 return fallback(text, id);
             }
