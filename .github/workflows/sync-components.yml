@@ -114,8 +114,16 @@ jobs:
       - name: Create sync branch
         run: |
           cd $GITHUB_WORKSPACE
-          BRANCH_NAME="sync/$(date +%Y-%m-%d)-$LATEST_COMMIT_SHORT"
+          BRANCH_NAME="sync/$(date +%Y-%m-%d-%H%M%S)-$LATEST_COMMIT_SHORT"
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+          
+          # Delete branch if it exists locally
+          git branch -D "$BRANCH_NAME" 2>/dev/null || true
+          
+          # Delete branch if it exists remotely
+          git push origin --delete "$BRANCH_NAME" 2>/dev/null || true
+          
+          # Create fresh branch
           git checkout -b "$BRANCH_NAME"
           echo "Created branch: $BRANCH_NAME"
 
