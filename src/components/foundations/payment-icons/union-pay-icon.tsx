@@ -1,3 +1,4 @@
+
 import type { SVGProps } from "react";
 
 const UnionPayIcon = (props: SVGProps<SVGSVGElement>) => {

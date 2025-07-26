@@ -1,3 +1,4 @@
+
 import type { MouseEventHandler, ReactNode } from "react";
 import { X as CloseX } from "@untitledui/icons";
 import { Dot } from "@/components/foundations/dot-icon";
@@ -257,7 +258,7 @@ export const BadgeWithFlag = <T extends BadgeTypes>(props: BadgeWithFlagProps<T>
     const colors = withPillTypes[type];
 
     const pillSizes = {
-        sm: "gap-1 py-0.5 pl-[3px] pr-2 text-xs font-medium",
+        sm: "gap-1 py-0.5 pl-0.75 pr-2 text-xs font-medium",
         md: "gap-1.5 py-0.5 pl-1 pr-2.5 text-sm font-medium",
         lg: "gap-1.5 py-1 pl-1.5 pr-3 text-sm font-medium",
     };
@@ -295,7 +296,7 @@ export const BadgeWithImage = <T extends BadgeTypes>(props: BadgeWithImageProps<
     const colors = withPillTypes[type];
 
     const pillSizes = {
-        sm: "gap-1 py-0.5 pl-[3px] pr-2 text-xs font-medium",
+        sm: "gap-1 py-0.5 pl-0.75 pr-2 text-xs font-medium",
         md: "gap-1.5 py-0.5 pl-1 pr-2.5 text-sm font-medium",
         lg: "gap-1.5 py-1 pl-1.5 pr-3 text-sm font-medium",
     };
@@ -341,12 +342,12 @@ export const BadgeWithButton = <T extends BadgeTypes>(props: BadgeWithButtonProp
     const colors = withPillTypes[type];
 
     const pillSizes = {
-        sm: "gap-0.5 py-0.5 pl-2 pr-[3px] text-xs font-medium",
+        sm: "gap-0.5 py-0.5 pl-2 pr-0.75 text-xs font-medium",
         md: "gap-0.5 py-0.5 pl-2.5 pr-1 text-sm font-medium",
         lg: "gap-0.5 py-1 pl-3 pr-1.5 text-sm font-medium",
     };
     const badgeSizes = {
-        sm: "gap-0.5 py-0.5 pl-1.5 pr-[3px] text-xs font-medium",
+        sm: "gap-0.5 py-0.5 pl-1.5 pr-0.75 text-xs font-medium",
         md: "gap-0.5 py-0.5 pl-2 pr-1 text-sm font-medium",
         lg: "gap-0.5 py-1 pl-2.5 pr-1.5 text-sm font-medium rounded-lg",
     };
@@ -390,13 +391,13 @@ export const BadgeIcon = <T extends BadgeTypes>(props: BadgeIconProps<T>) => {
     const colors = withPillTypes[type];
 
     const pillSizes = {
-        sm: "p-[5px]",
+        sm: "p-1.25",
         md: "p-1.5",
         lg: "p-2",
     };
 
     const badgeSizes = {
-        sm: "p-[5px]",
+        sm: "p-1.25",
         md: "p-1.5",
         lg: "p-2 rounded-lg",
     };

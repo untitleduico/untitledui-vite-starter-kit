@@ -1,4 +1,5 @@
-import type { DetailedReactHTMLElement, ReactNode } from "react";
+
+import type { DetailedReactHTMLElement, HTMLAttributes, ReactNode } from "react";
 import React, { cloneElement, useRef } from "react";
 import { filterDOMProps } from "@react-aria/utils";
 
@@ -42,7 +43,7 @@ export const FileTrigger = (props: FileTriggerProps) => {
     const clonableElement = React.Children.only(children);
 
     // Clone the child element and add an `onClick` handler to open the file dialog.
-    const mainElement = cloneElement(clonableElement as DetailedReactHTMLElement<any, any>, {
+    const mainElement = cloneElement(clonableElement as DetailedReactHTMLElement<HTMLAttributes<HTMLElement>, HTMLElement>, {
         onClick: () => {
             if (inputRef.current?.value) {
                 inputRef.current.value = "";
