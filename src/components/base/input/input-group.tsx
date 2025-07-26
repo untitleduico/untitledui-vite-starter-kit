@@ -1,3 +1,4 @@
+
 import { type HTMLAttributes, type ReactNode } from "react";
 import { HintText } from "@/components/base/input/hint-text";
 import type { InputBaseProps } from "@/components/base/input/input";
@@ -14,7 +15,7 @@ interface InputPrefixProps extends HTMLAttributes<HTMLDivElement> {
     isDisabled?: boolean;
 }
 
-export const InputPrefix = ({ position = "leading", size = "sm", isDisabled, children, ...props }: InputPrefixProps) => (
+export const InputPrefix = ({ isDisabled, children, ...props }: InputPrefixProps) => (
     <span
         {...props}
         className={cx(

@@ -1,3 +1,4 @@
+
 import type { ComponentProps, ComponentPropsWithRef } from "react";
 import { useId, useRef, useState } from "react";
 import type { FileIcon } from "@untitledui/file-icons";
@@ -304,11 +305,9 @@ export const FileListItemProgressBar = ({ name, size, progress, failed, type, fi
                 )}
 
                 {failed && (
-                    <div className="mt-1.5 flex gap-3">
-                        <Button color="link-destructive" size="sm" onClick={onRetry}>
-                            Try again
-                        </Button>
-                    </div>
+                    <Button color="link-destructive" size="sm" onClick={onRetry} className="mt-1.5">
+                        Try again
+                    </Button>
                 )}
             </div>
         </motion.li>
@@ -362,11 +361,9 @@ export const FileListItemProgressFill = ({ name, size, progress, failed, type, f
                     </div>
 
                     {failed && (
-                        <div className="mt-1.5 flex gap-3">
-                            <Button color="link-destructive" size="sm" onClick={onRetry}>
-                                Try again
-                            </Button>
-                        </div>
+                        <Button color="link-destructive" size="sm" onClick={onRetry} className="mt-1.5">
+                            Try again
+                        </Button>
                     )}
                 </div>
 

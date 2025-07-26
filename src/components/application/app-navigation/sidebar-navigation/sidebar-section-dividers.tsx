@@ -1,3 +1,4 @@
+
 import { SearchLg } from "@untitledui/icons";
 import { Input } from "@/components/base/input/input";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";

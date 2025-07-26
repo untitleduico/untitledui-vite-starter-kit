@@ -1,3 +1,4 @@
+
 import type { SVGProps } from "react";
 
 const PayPalIcon = (props: SVGProps<SVGSVGElement>) => {
