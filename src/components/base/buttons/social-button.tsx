@@ -1,5 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, DetailedHTMLProps } from "react";
-import type { ButtonProps as AriaButtonProps } from "react-aria-components";
+import type { ButtonProps as AriaButtonProps, LinkProps as AriaLinkProps } from "react-aria-components";
 import { Button as AriaButton, Link as AriaLink } from "react-aria-components";
 import { cx, sortCx } from "@/utils/cx";
 import { AppleLogo, DribbleLogo, FacebookLogo, FigmaLogo, FigmaLogoOutlined, GoogleLogo, TwitterLogo } from "./social-logos";
@@ -61,7 +61,10 @@ interface ButtonProps extends CommonProps, DetailedHTMLProps<Omit<ButtonHTMLAttr
     slot?: AriaButtonProps["slot"];
 }
 
-interface LinkProps extends CommonProps, DetailedHTMLProps<Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "color">, HTMLAnchorElement> {}
+interface LinkProps extends CommonProps, DetailedHTMLProps<Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "color">, HTMLAnchorElement> {
+    /** Options for the configured client side router. */
+    routerOptions?: AriaLinkProps["routerOptions"];
+}
 
 export type SocialButtonProps = ButtonProps | LinkProps;
 
