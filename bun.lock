@@ -7,7 +7,7 @@
         "@tailwindcss/typography": "^0.5.19",
         "@tailwindcss/vite": "^4.1.18",
         "@untitledui/file-icons": "^0.0.8",
-        "@untitledui/icons": "^0.0.19",
+        "@untitledui/icons": "^0.0.21",
         "input-otp": "^1.4.2",
         "motion": "^12.29.0",
         "qr-code-styling": "^1.9.2",
@@ -529,7 +529,7 @@
 
     "@untitledui/file-icons": ["@untitledui/file-icons@0.0.8", "", { "peerDependencies": { "react": ">= 18" } }, "sha512-lxOp2rreDedjD82SOKoETmCDhm5TckCD3y49EEsuZqxnFES/3bfg9drNiilOCOAuEco7ImvdB4L//I//B93asw=="],
 
-    "@untitledui/icons": ["@untitledui/icons@0.0.19", "", { "peerDependencies": { "react": ">= 16" } }, "sha512-cZA7BBE5+piNpzO9CiXypbmGYSDqnT3WwHn6/TU7cUuYl7oUlwIn0AwW/kYDDkmJMPu/wRlnJDR1/OiXd4nqew=="],
+    "@untitledui/icons": ["@untitledui/icons@0.0.21", "", { "peerDependencies": { "react": ">= 16" } }, "sha512-+aVWUw/1se9PIJgwMD3qp5ohynGlVNu2oHSLzMwYpiSFp6bFcxv4kUGy685hQXB/hE4WAqnp7dIEVVMD0tfL7w=="],
 
     "@vitejs/plugin-react-swc": ["@vitejs/plugin-react-swc@4.2.2", "", { "dependencies": { "@rolldown/pluginutils": "1.0.0-beta.47", "@swc/core": "^1.13.5" }, "peerDependencies": { "vite": "^4 || ^5 || ^6 || ^7" } }, "sha512-x+rE6tsxq/gxrEJN3Nv3dIV60lFflPj94c90b+NNo6n1QV1QQUTLoL0MpaOVasUZ0zqVBn7ead1B5ecx1JAGfA=="],
 

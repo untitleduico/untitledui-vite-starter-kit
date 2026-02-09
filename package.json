@@ -12,7 +12,7 @@
         "@tailwindcss/typography": "^0.5.19",
         "@tailwindcss/vite": "^4.1.18",
         "@untitledui/file-icons": "^0.0.8",
-        "@untitledui/icons": "^0.0.19",
+        "@untitledui/icons": "^0.0.21",
         "input-otp": "^1.4.2",
         "motion": "^12.29.0",
         "qr-code-styling": "^1.9.2",
