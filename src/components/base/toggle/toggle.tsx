@@ -18,21 +18,21 @@ export const ToggleBase = ({ className, isHovered, isDisabled, isFocusVisible, i
         default: {
             sm: {
                 root: "h-5 w-9 p-0.5",
-                switch: cx("size-4", isSelected && "translate-x-4"),
+                switch: cx("size-4", isSelected && "translate-x-4 rtl:-translate-x-4"),
             },
             md: {
                 root: "h-6 w-11 p-0.5",
-                switch: cx("size-5", isSelected && "translate-x-5"),
+                switch: cx("size-5", isSelected && "translate-x-5 rtl:-translate-x-5"),
             },
         },
         slim: {
             sm: {
                 root: "h-4 w-8",
-                switch: cx("size-4", isSelected && "translate-x-4"),
+                switch: cx("size-4", isSelected && "translate-x-4 rtl:-translate-x-4"),
             },
             md: {
                 root: "h-5 w-10",
-                switch: cx("size-5", isSelected && "translate-x-5"),
+                switch: cx("size-5", isSelected && "translate-x-5 rtl:-translate-x-5"),
             },
         },
     };
@@ -42,13 +42,13 @@ export const ToggleBase = ({ className, isHovered, isDisabled, isFocusVisible, i
     return (
         <div
             className={cx(
-                "cursor-pointer rounded-full bg-tertiary outline-focus-ring transition duration-150 ease-linear",
+                "cursor-pointer rounded-full bg-tertiary ring-[0.5px] ring-secondary outline-focus-ring transition duration-150 ease-linear ring-inset",
                 isSelected && "bg-brand-solid",
                 isSelected && isHovered && "bg-brand-solid_hover",
-                isDisabled && "cursor-not-allowed bg-disabled",
+                isDisabled && "cursor-not-allowed opacity-50",
                 isFocusVisible && "outline-2 outline-offset-2",
 
-                slim && "ring-1 ring-secondary ring-inset",
+                slim && "ring-1",
                 slim && isSelected && "ring-transparent",
                 classes.root,
                 className,
@@ -60,7 +60,6 @@ export const ToggleBase = ({ className, isHovered, isDisabled, isFocusVisible, i
                 }}
                 className={cx(
                     "rounded-full bg-fg-white shadow-sm",
-                    isDisabled && "bg-toggle-button-fg_disabled",
 
                     slim && "shadow-xs",
                     slim && "border border-toggle-border",
@@ -74,6 +73,21 @@ export const ToggleBase = ({ className, isHovered, isDisabled, isFocusVisible, i
     );
 };
 
+const styles = {
+    sm: {
+        root: "gap-2",
+        textWrapper: "",
+        label: "text-sm font-medium",
+        hint: "text-sm",
+    },
+    md: {
+        root: "gap-3",
+        textWrapper: "gap-0.5",
+        label: "text-md font-medium",
+        hint: "text-md",
+    },
+};
+
 interface ToggleProps extends AriaSwitchProps {
     size?: "sm" | "md";
     label?: string;
@@ -82,30 +96,15 @@ interface ToggleProps extends AriaSwitchProps {
 }
 
 export const Toggle = ({ label, hint, className, size = "sm", slim, ...ariaSwitchProps }: ToggleProps) => {
-    const sizes = {
-        sm: {
-            root: "gap-2",
-            textWrapper: "",
-            label: "text-sm font-medium",
-            hint: "text-sm",
-        },
-        md: {
-            root: "gap-3",
-            textWrapper: "gap-0.5",
-            label: "text-md font-medium",
-            hint: "text-md",
-        },
-    };
-
     return (
         <AriaSwitch
             {...ariaSwitchProps}
-            className={(renderProps) =>
+            className={(state) =>
                 cx(
                     "flex w-max items-start",
-                    renderProps.isDisabled && "cursor-not-allowed",
-                    sizes[size].root,
-                    typeof className === "function" ? className(renderProps) : className,
+                    state.isDisabled && "cursor-not-allowed",
+                    styles[size].root,
+                    typeof className === "function" ? className(state) : className,
                 )
             }
         >
@@ -122,10 +121,10 @@ export const Toggle = ({ label, hint, className, size = "sm", slim, ...ariaSwitc
                     />
 
                     {(label || hint) && (
-                        <div className={cx("flex flex-col", sizes[size].textWrapper)}>
-                            {label && <p className={cx("text-secondary select-none", sizes[size].label)}>{label}</p>}
+                        <div className={cx("flex flex-col", styles[size].textWrapper)}>
+                            {label && <p className={cx("text-secondary select-none", styles[size].label)}>{label}</p>}
                             {hint && (
-                                <span className={cx("text-tertiary", sizes[size].hint)} onClick={(event) => event.stopPropagation()}>
+                                <span className={cx("text-tertiary", styles[size].hint)} onClick={(event) => event.stopPropagation()}>
                                     {hint}
                                 </span>
                             )}
