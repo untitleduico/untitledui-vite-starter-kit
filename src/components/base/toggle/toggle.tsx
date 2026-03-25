@@ -18,21 +18,21 @@ export const ToggleBase = ({ className, isHovered, isDisabled, isFocusVisible, i
         default: {
             sm: {
                 root: "h-5 w-9 p-0.5",
-                switch: cx("size-4", isSelected && "translate-x-4 rtl:-translate-x-4"),
+                switch: cx("size-4", isSelected && "translate-x-4"),
             },
             md: {
                 root: "h-6 w-11 p-0.5",
-                switch: cx("size-5", isSelected && "translate-x-5 rtl:-translate-x-5"),
+                switch: cx("size-5", isSelected && "translate-x-5"),
             },
         },
         slim: {
             sm: {
                 root: "h-4 w-8",
-                switch: cx("size-4", isSelected && "translate-x-4 rtl:-translate-x-4"),
+                switch: cx("size-4", isSelected && "translate-x-4"),
             },
             md: {
                 root: "h-5 w-10",
-                switch: cx("size-5", isSelected && "translate-x-5 rtl:-translate-x-5"),
+                switch: cx("size-5", isSelected && "translate-x-5"),
             },
         },
     };
