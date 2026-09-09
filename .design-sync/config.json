@@ -1,0 +1,119 @@
+{
+    "projectId": "df2f5856-9599-449b-ac02-46c02502c47e",
+    "shape": "package",
+    "pkg": "untitledui-vite-starter-kit",
+    "globalName": "UntitledUI",
+    "srcDir": "src/components",
+    "tsconfig": "tsconfig.app.json",
+    "cssEntry": ".design-sync/.cache/compiled.css",
+    "buildCmd": "npx tsc -p tsconfig.app.json --declaration --emitDeclarationOnly --noEmit false --outDir dist/types ; node .design-sync/make-dts-barrel.mjs && node .ds-sync/node_modules/@tailwindcss/cli/dist/index.mjs -i .design-sync/tailwind-entry.css -o .design-sync/.cache/compiled.css --optimize",
+    "extraEntries": [
+        "./.design-sync/alias-exports.ts"
+    ],
+    "libOverrides": {
+        "bundle.mjs": "tsconfig-paths resolved `@/dir` aliases to the directory itself instead of falling through to its index.tsx",
+        "source-kit.mjs": "synth entry star-exported files with duplicate export names, silently dropping AppStoreButton/Modal/Dialog/ModalOverlay/MastercardIcon from the global",
+        "dts.mjs": "several modules declare the same <Name>Props name (3x InputProps, 3x ButtonProps); resolve from the component's own file first"
+    },
+    "dtsPropsFor": {
+        "Button": "/** Disables the button and shows a disabled state */\nisDisabled?: boolean;\n/** Shows a loading spinner and disables the button */\nisLoading?: boolean;\n/** The size variant of the button */\nsize?: \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\";\n/** The color variant of the button */\ncolor?: \"primary\" | \"secondary\" | \"tertiary\" | \"link-gray\" | \"link-color\" | \"primary-destructive\" | \"secondary-destructive\" | \"tertiary-destructive\" | \"link-destructive\";\n/** Icon component or element to show before the text */\niconLeading?: FC<{ className?: string }> | React.ReactNode;\n/** Icon component or element to show after the text */\niconTrailing?: FC<{ className?: string }> | React.ReactNode;\n/** Removes horizontal padding from the text content */\nnoTextPadding?: boolean;\n/** When true, keeps the text visible during the loading state */\nshowTextWhileLoading?: boolean;\n/** Renders the button as an anchor. There is no separate Link component - use a link-* color with href. */\nhref?: string;\ntarget?: string;\nrel?: string;\ntype?: \"button\" | \"submit\" | \"reset\";\nonClick?: React.MouseEventHandler;\n/** Slot name for react-aria component */\nslot?: string;\nchildren?: React.ReactNode;\nclassName?: string;\nid?: string;"
+    },
+    "overrides": {
+        "Table": {
+            "cardMode": "column"
+        },
+        "Header": {
+            "cardMode": "column"
+        },
+        "EmptyState": {
+            "cardMode": "column"
+        },
+        "InputGroup": {
+            "cardMode": "column"
+        },
+        "InputTags": {
+            "cardMode": "column"
+        },
+        "InputTagsOuter": {
+            "cardMode": "column"
+        },
+        "PaginationDot": {
+            "cardMode": "column"
+        },
+        "PaginationLine": {
+            "cardMode": "column"
+        },
+        "Modal": {
+            "cardMode": "single",
+            "primaryStory": "ConfirmDialog"
+        },
+        "ComboBox": {
+            "cardMode": "single",
+            "primaryStory": "OpenListbox"
+        },
+        "MultiSelect": {
+            "cardMode": "single",
+            "primaryStory": "OpenListbox"
+        },
+        "Popover": {
+            "cardMode": "single",
+            "primaryStory": "InsideSelect"
+        },
+        "TagSelect": {
+            "cardMode": "single",
+            "primaryStory": "OpenListbox"
+        },
+        "SlideoutMenu": {
+            "cardMode": "single",
+            "primaryStory": "NotificationsPanel"
+        },
+        "PaginationButtonGroup": {
+            "cardMode": "column"
+        },
+        "PaginationCardAdvanced": {
+            "cardMode": "column"
+        },
+        "PaginationCardDefault": {
+            "cardMode": "column"
+        },
+        "PaginationCardMinimal": {
+            "cardMode": "column"
+        },
+        "PaginationPageDefault": {
+            "cardMode": "column"
+        },
+        "PaginationPageMinimalCenter": {
+            "cardMode": "column"
+        },
+        "SidebarNavigationDualTier": {
+            "cardMode": "single",
+            "primaryStory": "Default",
+            "viewport": "1440x900"
+        },
+        "SidebarNavigationSectionDividers": {
+            "cardMode": "single",
+            "primaryStory": "Default",
+            "viewport": "1440x900"
+        },
+        "SidebarNavigationSimple": {
+            "cardMode": "single",
+            "primaryStory": "Default",
+            "viewport": "1440x900"
+        },
+        "SidebarNavigationSlim": {
+            "cardMode": "single",
+            "primaryStory": "Default",
+            "viewport": "1440x900"
+        },
+        "SidebarNavigationSectionsSubheadings": {
+            "cardMode": "single",
+            "primaryStory": "Default",
+            "viewport": "1440x900"
+        },
+        "HeaderNavigationBase": {
+            "cardMode": "column",
+            "viewport": "1280x800"
+        }
+    },
+    "readmeHeader": ".design-sync/conventions.md"
+}

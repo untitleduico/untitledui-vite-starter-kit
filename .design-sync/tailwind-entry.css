@@ -1,0 +1,111 @@
+/* Brand fonts. The starter kit loads these from Google Fonts in index.html;
+   the bundle must carry them itself or every design renders in a fallback face. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..700;1,14..32,400..700&family=Roboto+Mono:wght@400;500&display=swap");
+
+/* design-sync Tailwind entry.
+   Compiles the repo's own globals.css (tokens + typography + plugins) AND
+   safelists the layout/spacing/type utilities a design agent needs, because
+   rendered designs receive only this compiled stylesheet - Tailwind cannot
+   scan code that does not exist yet. */
+@import "../src/styles/globals.css";
+
+@source "../src";
+@source "./previews";
+
+/* --- Layout primitives --- */
+@source inline("{,inline-}{flex,grid}");
+@source inline("{block,inline-block,inline,hidden,contents,table}");
+@source inline("{static,relative,absolute,fixed,sticky}");
+@source inline("{inset,top,right,bottom,left}-0");
+@source inline("z-{0,10,20,30,40,50}");
+
+/* --- Flex & grid --- */
+@source inline("flex-{row,row-reverse,col,col-reverse,wrap,nowrap,1,auto,initial,none}");
+@source inline("{shrink,grow}{,-0}");
+@source inline("items-{start,center,end,stretch,baseline}");
+@source inline("justify-{start,center,end,between,around,evenly,stretch}");
+@source inline("self-{auto,start,center,end,stretch}");
+@source inline("content-{start,center,end,between,around,evenly}");
+@source inline("grid-cols-{1..12}");
+@source inline("grid-rows-{1..6}");
+@source inline("col-span-{1..12}");
+@source inline("row-span-{1..6}");
+@source inline("col-span-full");
+@source inline("order-{1..6}");
+
+/* --- Spacing --- */
+@source inline("{p,m}{,x,y,t,r,b,l,s,e}-{0..24}");
+@source inline("{gap,gap-x,gap-y}-{0..24}");
+@source inline("{space-x,space-y}-{0..12}");
+@source inline("{m,mx,my,mt,mr,mb,ml}-auto");
+@source inline("-{m,mx,my,mt,mr,mb,ml}-{1..8}");
+
+/* --- Sizing --- */
+@source inline("size-{0..24}");
+@source inline("{w,h}-{0..24}");
+@source inline("{w,h}-{28,32,36,40,44,48,52,56,60,64,72,80,96}");
+@source inline("{min,max}-{w,h}-{28,32,36,40,44,48,56,64,72,80,96}");
+@source inline("size-{28,32,36,40,48,56,64,72,80,96}");
+@source inline("{inset,top,right,bottom,left}-{1/2,1/3,2/3,1/4,3/4,full,auto}");
+@source inline("-translate-{x,y}-{1/2,full}");
+@source inline("translate-{x,y}-{0,1/2,full}");
+@source inline("aspect-{square,video,auto}");
+@source inline("place-{items,content}-{start,center,end,stretch}");
+@source inline("mx-auto");
+@source inline("{w,h}-{full,screen,auto,px,min,max,fit}");
+@source inline("{w,h}-{1,2,3,5}/{2,3,4,5,6}");
+@source inline("{min,max}-{w,h}-{0,full,screen,min,max,fit,none}");
+@source inline("max-w-{xs,sm,md,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,prose}");
+
+/* --- Typography --- */
+@source inline("text-{xs,sm,md,lg,xl}");
+@source inline("text-display-{xs,sm,md,lg,xl,2xl}");
+@source inline("font-{thin,light,normal,medium,semibold,bold,extrabold,black}");
+@source inline("font-{body,display,mono}");
+@source inline("text-{left,center,right,justify}");
+@source inline("{uppercase,lowercase,capitalize,normal-case}");
+@source inline("{underline,line-through,no-underline}");
+@source inline("{truncate,text-wrap,text-nowrap,text-balance,break-words,whitespace-nowrap}");
+@source inline("line-clamp-{1..6}");
+@source inline("leading-{none,tight,snug,normal,relaxed,loose}");
+@source inline("tracking-{tighter,tight,normal,wide,wider}");
+@source inline("{list-disc,list-decimal,list-none,list-inside,list-outside}");
+
+/* --- Borders, radius, shadow --- */
+@source inline("border{,-x,-y,-t,-r,-b,-l}{,-0,-2,-4}");
+@source inline("rounded{,-none,-xs,-sm,-md,-lg,-xl,-2xl,-3xl,-4xl,-full}");
+@source inline("shadow{,-xs,-sm,-md,-lg,-xl,-2xl,-none}");
+@source inline("ring{,-0,-1,-2,-4}");
+@source inline("{ring,border,divide}-inset");
+@source inline("{divide-x,divide-y}");
+
+/* --- Effects, overflow, misc --- */
+@source inline("overflow{,-x,-y}-{auto,hidden,visible,scroll,clip}");
+@source inline("{opacity,bg-opacity}-{0,5,10,20,25,30,40,50,60,70,75,80,90,95,100}");
+@source inline("cursor-{pointer,default,not-allowed,text,wait,move,grab}");
+@source inline("{select-none,pointer-events-none,pointer-events-auto}");
+@source inline("object-{contain,cover,fill,none,scale-down}");
+@source inline("{transition,transition-all,transition-colors,transition-opacity,transition-transform}");
+@source inline("duration-{75,100,150,200,300,500,700,1000}");
+@source inline("ease-{linear,in,out,in-out}");
+@source inline("{sr-only,not-sr-only,antialiased,isolate}");
+
+/* --- Responsive + state variants over the layout core --- */
+@source inline("{sm,md,lg,xl,2xl}:{block,flex,grid,hidden,inline-flex}");
+@source inline("{sm,md,lg,xl}:grid-cols-{1..6}");
+@source inline("{sm,md,lg,xl}:flex-{row,col}");
+@source inline("{sm,md,lg,xl}:{p,px,py,gap}-{0..16}");
+@source inline("{sm,md,lg,xl}:text-{xs,sm,md,lg,xl}");
+@source inline("{sm,md,lg,xl}:text-display-{xs,sm,md,lg,xl}");
+@source inline("{sm,md,lg,xl}:max-w-{sm,md,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl}");
+@source inline("{sm,md,lg,xl}:{w,h}-{full,auto}");
+
+/* --- Utility colour scale (charts, tags, data viz) --- */
+@source inline("{text,bg,border,ring,fill,stroke}-utility-{amber,blue,brand,emerald,fuchsia,green,indigo,neutral,orange,pink,purple,red,sky,slate,yellow}-{50,100,200,300,400,500,600,700}");
+@source inline("basis-1/2"); @source inline("basis-1/3"); @source inline("basis-2/3"); @source inline("basis-1/4"); @source inline("basis-3/4"); @source inline("basis-full"); @source inline("basis-auto");
+
+/* --- Full semantic token vocabulary (so the design agent can use any of it) --- */
+@source inline("text-{brand-primary,brand-secondary,brand-secondary_hover,brand-tertiary,brand-tertiary_alt,editor-icon-fg,editor-icon-fg_active,error-primary,error-primary_hover,placeholder,primary,primary_on-brand,quaternary,quaternary_on-brand,secondary,secondary_hover,secondary_on-brand,success-primary,tertiary,tertiary_hover,tertiary_on-brand,warning-primary,white}");
+@source inline("bg-{active,brand-primary,brand-primary_alt,brand-secondary,brand-section,brand-section_subtle,brand-solid,brand-solid_hover,error-primary,error-secondary,error-solid,error-solid_hover,overlay,primary,primary-solid,primary_alt,primary_hover,quaternary,secondary,secondary-solid,secondary_alt,secondary_hover,success-primary,success-secondary,success-solid,tertiary,warning-primary,warning-secondary,warning-solid}");
+@source inline("{border,ring,outline,divide}-{brand,brand_alt,error,error_subtle,primary,secondary,secondary_alt,tertiary}");
+@source inline("{text,bg,fill,stroke,ring}-fg-{brand-primary,brand-primary_alt,brand-secondary,brand-secondary_alt,brand-secondary_hover,error-primary,error-secondary,primary,quaternary,quaternary_hover,secondary,secondary_hover,success-primary,success-secondary,tertiary,tertiary_hover,warning-primary,warning-secondary,white}");

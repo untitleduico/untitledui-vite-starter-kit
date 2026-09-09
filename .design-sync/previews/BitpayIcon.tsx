@@ -1,0 +1,12 @@
+import { BitpayIcon } from "untitledui-vite-starter-kit";
+
+export const Default = () => <BitpayIcon className="h-10 w-auto" />;
+
+export const Sizes = () => (
+    <div className="flex flex-wrap items-end gap-6">
+        <BitpayIcon className="h-6 w-auto" />
+        <BitpayIcon className="h-8 w-auto" />
+        <BitpayIcon className="h-10 w-auto" />
+        <BitpayIcon className="h-14 w-auto" />
+    </div>
+);
