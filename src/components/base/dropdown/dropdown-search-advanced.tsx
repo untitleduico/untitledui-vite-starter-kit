@@ -8,7 +8,7 @@ import { InputBase } from "../input/input";
 
 export const DropdownSearchAdvanced = () => {
     const [selectedUsers, setSelectedUsers] = useState<Selection>(new Set(["untitledui", "shutterframe"]));
-    let { contains } = useFilter({ sensitivity: "base" });
+    const { contains } = useFilter({ sensitivity: "base" });
 
     return (
         <Dropdown.Root>

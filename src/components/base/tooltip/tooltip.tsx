@@ -96,7 +96,7 @@ export const Tooltip = ({
     );
 };
 
-interface TooltipTriggerProps extends AriaButtonProps {}
+type TooltipTriggerProps = AriaButtonProps;
 
 export const TooltipTrigger = ({ children, className, ...buttonProps }: TooltipTriggerProps) => {
     return (
