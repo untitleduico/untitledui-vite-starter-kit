@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { cx } from "@/utils/cx";
 import type { NavItemDividerType, NavItemType } from "../config";
 import { NavItemBase } from "./nav-item";
@@ -13,9 +12,7 @@ interface NavListProps {
 }
 
 export const NavList = ({ activeUrl, items, className }: NavListProps) => {
-    const [open, setOpen] = useState(false);
     const activeItem = items.find((item) => item.href === activeUrl || item.items?.some((subItem) => subItem.href === activeUrl));
-    const [currentItem, setCurrentItem] = useState(activeItem);
 
     return (
         <ul className={cx("flex flex-col px-4 pt-5", className)}>
@@ -30,16 +27,8 @@ export const NavList = ({ activeUrl, items, className }: NavListProps) => {
 
                 if (item.items?.length) {
                     return (
-                        <details
-                            key={item.label}
-                            open={activeItem?.href === item.href}
-                            className="appearance-none py-0.25"
-                            onToggle={(e) => {
-                                setOpen(e.currentTarget.open);
-                                setCurrentItem(item);
-                            }}
-                        >
-                            <NavItemBase href={item.href} badge={item.badge} icon={item.icon} type="collapsible">
+                        <details key={item.label} open={activeItem?.href === item.href} className="appearance-none py-0.25">
+                            <NavItemBase badge={item.badge} icon={item.icon} type="collapsible">
                                 {item.label}
                             </NavItemBase>
 
@@ -65,14 +54,7 @@ export const NavList = ({ activeUrl, items, className }: NavListProps) => {
 
                 return (
                     <li key={item.label} className="py-px">
-                        <NavItemBase
-                            type="link"
-                            badge={item.badge}
-                            icon={item.icon}
-                            href={item.href}
-                            current={currentItem?.href === item.href}
-                            open={open && currentItem?.href === item.href}
-                        >
+                        <NavItemBase type="link" badge={item.badge} icon={item.icon} href={item.href} current={activeUrl === item.href}>
                             {item.label}
                         </NavItemBase>
                     </li>

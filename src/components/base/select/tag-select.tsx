@@ -11,7 +11,7 @@ import type { IconComponentType } from "@/components/base/badges/badge-types";
 import { HintText } from "@/components/base/input/hint-text";
 import { Label } from "@/components/base/input/label";
 import { Popover } from "@/components/base/select/popover";
-import { type SelectItemType, sizes } from "@/components/base/select/select-shared";
+import { SelectContext, type SelectItemType, sizes } from "@/components/base/select/select-shared";
 import { TagCloseX } from "@/components/base/tags/base-components/tag-close-x";
 import { useResizeObserver } from "@/hooks/use-resize-observer";
 import { cx } from "@/utils/cx";
@@ -30,14 +30,12 @@ interface TagSelectValueProps extends AriaGroupProps {
 }
 
 const TagSelectContext = createContext<{
-    size: "sm" | "md" | "lg";
     selectedKeys: Key[];
     selectedItems: ListData<SelectItemType>;
     onRemove: (keys: Set<Key>) => void;
     onInputChange: (value: string) => void;
     valueFormatter?: (item: SelectItemType) => string;
 }>({
-    size: "sm",
     selectedKeys: [],
     selectedItems: {} as ListData<SelectItemType>,
     onRemove: () => {},
@@ -134,7 +132,7 @@ export const TagSelectBase = ({
     // Resize observer for popover width
     const onResize = useCallback(() => {
         if (!placeholderRef.current) return;
-        let divRect = placeholderRef.current?.getBoundingClientRect();
+        const divRect = placeholderRef.current?.getBoundingClientRect();
         setPopoverWidth(divRect.width + "px");
     }, [placeholderRef, setPopoverWidth]);
 
@@ -147,7 +145,6 @@ export const TagSelectBase = ({
     return (
         <TagSelectContext.Provider
             value={{
-                size,
                 selectedKeys,
                 selectedItems,
                 onInputChange,
@@ -155,52 +152,54 @@ export const TagSelectBase = ({
                 valueFormatter,
             }}
         >
-            <AriaComboBox
-                allowsEmptyCollection
-                menuTrigger="focus"
-                items={accessibleList.items}
-                onInputChange={onInputChange}
-                inputValue={accessibleList.filterText}
-                // This keeps the combobox popover open and the input value unchanged when an item is selected.
-                value={null}
-                onChange={onSelectionChange}
-                className={(state) => cx("flex flex-col gap-1.5", typeof className === "function" ? className(state) : className)}
-                {...props}
-            >
-                {(state) => (
-                    <>
-                        {props.label && (
-                            <Label isRequired={state.isRequired} tooltip={props.tooltip}>
-                                {props.label}
-                            </Label>
-                        )}
+            <SelectContext.Provider value={{ size }}>
+                <AriaComboBox
+                    allowsEmptyCollection
+                    menuTrigger="focus"
+                    items={accessibleList.items}
+                    onInputChange={onInputChange}
+                    inputValue={accessibleList.filterText}
+                    // This keeps the combobox popover open and the input value unchanged when an item is selected.
+                    value={null}
+                    onChange={onSelectionChange}
+                    className={(state) => cx("flex flex-col gap-1.5", typeof className === "function" ? className(state) : className)}
+                    {...props}
+                >
+                    {(state) => (
+                        <>
+                            {props.label && (
+                                <Label isRequired={state.isRequired} tooltip={props.tooltip}>
+                                    {props.label}
+                                </Label>
+                            )}
 
-                        <TagSelectTagsValue
-                            size={size}
-                            shortcut={shortcut}
-                            ref={placeholderRef}
-                            placeholder={placeholder}
-                            icon={icon}
-                            // This is a workaround to correctly calculating the trigger width
-                            // while using ResizeObserver wasn't 100% reliable.
-                            onFocus={onResize}
-                            onPointerEnter={onResize}
-                        />
+                            <TagSelectTagsValue
+                                size={size}
+                                shortcut={shortcut}
+                                ref={placeholderRef}
+                                placeholder={placeholder}
+                                icon={icon}
+                                // This is a workaround to correctly calculating the trigger width
+                                // while using ResizeObserver wasn't 100% reliable.
+                                onFocus={onResize}
+                                onPointerEnter={onResize}
+                            />
 
-                        <Popover size={size} triggerRef={placeholderRef} style={{ width: popoverWidth }} className={props?.popoverClassName}>
-                            <AriaListBox selectionMode="multiple" className="size-full outline-hidden">
-                                {children}
-                            </AriaListBox>
-                        </Popover>
+                            <Popover size={size} triggerRef={placeholderRef} style={{ width: popoverWidth }} className={props?.popoverClassName}>
+                                <AriaListBox selectionMode="multiple" className="size-full outline-hidden">
+                                    {children}
+                                </AriaListBox>
+                            </Popover>
 
-                        {props.hint && (
-                            <HintText isInvalid={state.isInvalid} className={cx(size === "sm" && "text-xs")}>
-                                {props.hint}
-                            </HintText>
-                        )}
-                    </>
-                )}
-            </AriaComboBox>
+                            {props.hint && (
+                                <HintText isInvalid={state.isInvalid} className={cx(size === "sm" && "text-xs")}>
+                                    {props.hint}
+                                </HintText>
+                            )}
+                        </>
+                    )}
+                </AriaComboBox>
+            </SelectContext.Provider>
         </TagSelectContext.Provider>
     );
 };
