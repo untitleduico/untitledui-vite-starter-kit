@@ -79,7 +79,6 @@ const getHorizontalStyles = ({ size, fullWidth }: { size?: "sm" | "md"; fullWidt
     line: "gap-2",
 });
 
-
 interface TabListComponentProps<T extends object, K extends Orientation> extends Omit<AriaTabListProps<T>, "items"> {
     /** The size of the tab list. */
     size?: keyof typeof sizes;
