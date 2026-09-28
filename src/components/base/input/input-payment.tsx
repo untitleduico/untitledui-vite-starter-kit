@@ -77,7 +77,7 @@ export const formatCardNumber = (number: string) => {
     return cleaned;
 };
 
-interface PaymentInputProps extends InputProps {}
+type PaymentInputProps = InputProps;
 
 export const PaymentInput = ({
     onChange,
